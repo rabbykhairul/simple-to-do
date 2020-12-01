@@ -10,6 +10,11 @@ class App extends Component {
     ],
   };
 
+  deleteItem = (item) => {
+    const toDoItems = this.state.toDoItems.filter((i) => i.id !== item.id);
+    this.setState({ toDoItems });
+  };
+
   render() {
     return (
       <div className="container">

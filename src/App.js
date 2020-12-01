@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InputForm from "./components/InputForm";
 import ListTable from "./components/ListTable";
 
 class App extends Component {
@@ -15,9 +16,17 @@ class App extends Component {
     this.setState({ toDoItems });
   };
 
+  addNewItem = (content) => {
+    const item = { id: Date.now().toString(), content };
+    const toDoItems = [...this.state.toDoItems];
+    toDoItems.unshift(item);
+    this.setState({ toDoItems });
+  };
+
   render() {
     return (
-      <div className="container">
+      <div className="container mt-4">
+        <InputForm onSubmit={this.addNewItem} />
         <ListTable
           items={this.state.toDoItems}
           onUpdate={this.updateItem}

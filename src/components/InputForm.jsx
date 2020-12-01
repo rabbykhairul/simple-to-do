@@ -5,6 +5,10 @@ class InputForm extends Component {
     content: "",
   };
 
+  componentDidMount() {
+    if (this.props.content) this.setState({ content: this.props.content });
+  }
+
   updateInputData = (e) => {
     const content = e.currentTarget.value;
     this.setState({ content });
@@ -28,7 +32,12 @@ class InputForm extends Component {
             className="form-control"
           />
         </div>
-        <button className="btn btn-primary">Add</button>
+        {this.props.content && (
+          <button className="btn btn-primary">Update</button>
+        )}
+        {!this.props.content && (
+          <button className="btn btn-primary">Add</button>
+        )}
       </form>
     );
   }
